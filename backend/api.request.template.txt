@@ -1,0 +1,24 @@
+####################
+File containing template inputs for testing backend on the API client
+####################
+
+auth/register
+{"username": "David","password": "password123","email": "asfedfasdcc@gmail.com","dob": "1999-05-15","firstName": "dave","lastName": "dixon", "gender": "male", "cardNumber": "4539274786850290", "expiryDate": "2025-06-30", "cvc": "000", "biography": "a;sdhfnasbhdfjsn", "student": false }
+
+auth/login
+{ "username":"holly", "password":"asdfaqwef" }
+
+auth/logout
+{"token":"TOKEN"}
+
+review/create
+{"eventId":"ID", "review":"REVIEW", "star_rating":"RATING" }
+
+tags/create
+{"tag":"Comedy"}
+
+review/reply
+{ "reviewId":"1", "reply":"I disagree", "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1paGlrYWciLCJpZCI6OSwiaWF0IjoxNjg4NTE4NjQ5fQ.ftMl8KeElOVqxUbxnya2EGBCMjQ7RLt6vhYJ4EKa9lc" }
+
+event_create
+{ "user_id":"3", "event_name":"party1", "event_description":"First party", "price":"[1,5,10]", "location":"Sydney", "tags":"[Party, Conference, Music, Health]", "event_date":"2023-12-07", "event_time":"13:50", "max_capacity":"100", "current_capacity":"0" }

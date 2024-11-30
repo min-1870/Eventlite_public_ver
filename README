@@ -1,0 +1,61 @@
+For this project, the software will operate in the Lubuntu virtual machine on a virtual box. If the instructions in this file are too hard to follow, follow the instructions in the report as there are pictures to assist in the installation process.
+
+6.1 Installation manual
+
+6.1.1 Installing Lubuntu Virtual machine on virtual box
+1. Download the Lubuntu virtual machine image using the link below
+https://sourceforge.net/projects/linuxvmimages/files/VMware/L/lubuntu_20.04.1_VM.zip/download
+Make sure to install the 6.1.22 version or later.
+2. Download the VirtualBox using the link below
+https://www.virtualbox.org/wiki/Download_Old_Builds_6_1
+3. Make sure to install the 6.1.46 version or later.
+Run the executable file for Lubuntu. After completing the installation steps, the window should appear.
+4. Extract the Virtual box zip file that you downloaded from step 2
+5. Click on import in the Oracle VM virtual box manager displayed in image 1 and 5.the Appliance to import window should appear.
+6. Make sure that the “Local File System” option is selected for the source field. In the file field, click on the folder icon and select the VM image file with the .ovf extension that you downloaded in step 2. After that click continue.
+7. After that, the appliance settings window will appear. Leave the settings as is and click on import. After that, you should see the “vm” virtual machine option on the let of the Oracle manager.
+8. Select the “vm” virtual machine and click the green arrow “start” button. Note: if an error appears to activate AMD_V, follow the instructions below to enable SMV mode in the BIOS. Instructions in the link below for ASUS BIOS,
+https://www.asus.com/support/FAQ/1043992
+9. Use the login credentials below to log into the LUBUNTU user,
+Password: lubuntu
+
+6.1.2 Building the EventLite project
+
+Cloning the github repository
+
+1. In the vm, open a terminal by opening the home tab and searching for “terminal”
+2. Then, run the git clone command below using the credentials
+“git clone https://github.com/unsw-cse-comp3900-9900-23T2/3900W16Aeventlite.git”
+Username: Ethanlammie
+Password: SUPERSTRONG PASSWORD
+Note: copy and pasting between your local machine and the vm will most likely not be enabled. Therefore, to copy and paste the command line and the password, you will need to have this report open in the vm to copy and paste from the code.
+
+Building the database
+
+1. In a new terminal, run “sudo apt update” and “sudo apt install postgresql postgresql-contrib”.
+Password: lubuntu
+2. Ensure that the service is started using the command line “sudo systemctl start postgresql.service”
+Password: lubuntu
+3. Change the password for the default postgres user to “postgres”.
+Enter the command line “sudo -u postgres psql” which will take you to the postgresql client for the default postgres user
+Password: lubuntu
+Enter “\password” and change the password to “postgres”
+Enter “exit” to exit out of the postgresql client.
+
+Building the backend and frontend, and preparing the database
+
+1. Go into the repository in your terminal i.e. “cd 3900W16Aeventlite”
+2. Run the command “sudo apt update” and “sudo apt install nodejs npm” to install npm.
+Password: lubuntu
+3. Update nodeJS to version 20.5.0
+a. First install curl using the command line “sudo snap install curl”
+Password: lubuntu
+b. Run the command line “sudo apt-get install build-essential libssl-dev curl git-core”
+c. Run the command line “curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash” and after the installation is done, restart your terminal
+d. Navigate back to the git repository, i.e. “cd 3900W16Aeventlite” and run “nvm install 20.5.0” to install the 20.5.0 version of nodejs.
+4. Navigate into the backend folder, i.e. “cd backend”  and run “npm install” to install the node packages.
+5. Run the command line “npm run dev” to run the backend and initialise the database tables. After that is done, press ctrl+c to stop the backend server.
+6. Remaining in the backend folder, go into the database folder “cd database” and run the command “npx sequelize db:seed:all” to initialise users and events.
+7. Navigate back into the backend folder, “cd ..” and run “npm run dev” to run the backend server.
+8. After that, start a new terminal and navigate to the frontend folder and run “npm install”
+9. Run “npm start” to initiate the frontend. Make sure that the backend server is running before initiating the frontend server.
